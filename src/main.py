@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# I know it doesn't work without the api_key. I just don't know how to include it without writing it in the code or another file.
+# currently the key is in another file on my pc and I've tested it and it works
+
 import paho.mqtt.client as mqtt
 import time
 import wetter
