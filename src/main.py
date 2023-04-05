@@ -35,21 +35,8 @@ def specific_callback(client, userdata, msg):
         return
     
     if msg.topic == "req/weather/<Datum>/<Uhrzeit>":
-        client.publish(msg.topic.replace("req/", ""), weather_api.get_weather_by_date_with_gps(location["lat"], location["lon"], msg.payload["date"] + " " + msg.payload["time"]))
+        client.publish("weather/<Datum>/<Uhrzeit>", weather_api.get_weather_by_date_with_gps(location["lat"], location["lon"], msg.payload["date"] + " " + msg.payload["time"]))
         return
-
-def function2Test():
-    return True
-
-def function2Test_get_current_weather_with_gps():
-    if weather_api.get_current_weather_with_gps(location["lat"], location["lon"]) != None:
-        return True
-    return False
-
-def function2Test_get_weather_by_date_with_gps():
-    if weather_api.get_weather_by_date_with_gps(location["lat"], location["lon"], "2022-04-01 14:30:00") != None:
-        return True
-    return False
 
 if __name__ == "__main__": # pragma: no cover
     #aufbau der MQTT-Verbindung
@@ -72,7 +59,6 @@ if __name__ == "__main__": # pragma: no cover
 
     #Hier kann der eigene Code stehen. Loop oder Threads    
     while True:
-        print("test: " + str(function2Test_get_current_weather_with_gps()))
         time.sleep(100)
         #client.publish("test/Pfad/1", "asdf")
 
