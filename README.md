@@ -1,3 +1,23 @@
+# Anfrage stellen:
+Aktuelles Wetter mit: req/weather/now
+Bestimmtes Datum mit: req/weather/<Datum>/<Uhrzeit>
+   Inhalt der Nachricht enthält Datum
+      {
+        lat: float,
+        lon: float,
+      }
+  
+# Antwort:
+Beide Anfragen erhalten die Antwort:
+    {
+      "location": string,
+      "country": string,
+      "temperature": float,
+      "humidity": float,
+      "description": string
+    }
+
+
 # template 
 
 Dieses Repo soll nur als Template dienen für alle weiteren Services und Use-Cases. Wenn ein neues Repo erstellt wird von diesem Template sollte es public sein, da sonst Github-Actions und das Erstellen der Dockerimages eingeschränkt ist.
