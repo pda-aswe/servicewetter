@@ -15,7 +15,7 @@ class OpenWeatherMapAPI:
                 return f.readline().strip('\n')
         else:
             print("api key file missing")
-            quit()
+            #quit()
 
     # def get_current_weather_by_city(self, city_name):
     #     url = f"{self.BASE_URL}weather?q={city_name}&appid={self.api_key}&units=metric"
