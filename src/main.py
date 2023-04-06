@@ -48,7 +48,9 @@ if __name__ == "__main__": # pragma: no cover
     client.on_message = on_message
 
     #Definition einer Callback-Funktion für ein spezielles Topic
-    client.message_callback_add("test/Pfad/2", specific_callback)
+    client.message_callback_add("weather/now", specific_callback)
+    client.message_callback_add("weather/<Datum>/<Uhrzeit>", specific_callback)
+    client.message_callback_add("location/current", specific_callback)
     #weather/now
     #weather/<Datum>/<Uhrzeit>
 
