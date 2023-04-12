@@ -5,7 +5,7 @@ import time
 import wetter
 import datetime
 import os
-
+    
 weather_api = wetter.OpenWeatherMapAPI()
 location = {
     "lat" : 48.7758,
@@ -24,6 +24,7 @@ def on_message(client, userdata, msg):
     
 
 def specific_callback(client, userdata, msg):
+    global location
     print("Specific Topic: "+msg.topic+" "+str(msg.payload))
     if msg.topic == "location/current":
        location = msg.payload
@@ -32,10 +33,12 @@ def specific_callback(client, userdata, msg):
     if msg.topic == "req/weather/now":
         #client.publish(weather_api.get_current_weather_by_city("Berlin"))
         client.publish("weather/now", weather_api.get_current_weather_with_gps(location["lat"], location["lon"]))
+        print("sent weather/now")
         return
     
     if msg.topic == "req/weather/<Datum>/<Uhrzeit>":
         client.publish("weather/<Datum>/<Uhrzeit>", weather_api.get_weather_by_date_with_gps(location["lat"], location["lon"], msg.payload["date"] + " " + msg.payload["time"]))
+        print("sent weather/<Datum>/<Uhrzeit>")
         return
 
 if __name__ == "__main__": # pragma: no cover
@@ -67,5 +70,4 @@ if __name__ == "__main__": # pragma: no cover
     #Sollte am Ende stehen, da damit die MQTT-Verbindung beendet wird
     client.loop_stop()
     client.disconnect()
-
 
