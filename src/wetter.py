@@ -73,7 +73,8 @@ class OpenWeatherMapAPI:
                 "humidity": data["main"]["humidity"],
                 "description": data["weather"][0]["description"]
             }
-            return weather
+            print(weather)
+            return str(weather)
         else:
             return None
     
@@ -99,7 +100,8 @@ class OpenWeatherMapAPI:
                     "humidity": closest_weather["main"]["humidity"],
                     "description": closest_weather["weather"][0]["description"]
                 }
-                return weather_data
+                print(weather_data)
+                return str(weather_data)
             else:
                 return None
         else:
