@@ -7,10 +7,11 @@ import datetime
 import os
     
 weather_api = wetter.OpenWeatherMapAPI()
-location = {
-    "lat" : 48.7758,
-    "lon" : 9.1829,
-}
+class loc:
+    lat = 48.7758
+    lon = 9.1829
+    
+location = loc()
     
 def on_connect(client,userdata,flags, rc):
     #Hier sollten alle Topics aufgelistet werden, auf welche gehört werden soll
@@ -32,12 +33,12 @@ def specific_callback(client, userdata, msg):
     
     if msg.topic == "req/weather/now":
         #client.publish(weather_api.get_current_weather_by_city("Berlin"))
-        client.publish("weather/now", weather_api.get_current_weather_with_gps(location["lat"], location["lon"]))
+        client.publish("weather/now", weather_api.get_current_weather_with_gps(location.lat, location.lon))
         print("sent weather/now")
         return
     
     if msg.topic == "req/weather/<Datum>/<Uhrzeit>":
-        client.publish("weather/<Datum>/<Uhrzeit>", weather_api.get_weather_by_date_with_gps(location["lat"], location["lon"], msg.payload["date"] + " " + msg.payload["time"]))
+        client.publish("weather/<Datum>/<Uhrzeit>", weather_api.get_weather_by_date_with_gps(location.lat, location.lon, msg.payload.date + " " + msg.payload.time))
         print("sent weather/<Datum>/<Uhrzeit>")
         return
 
