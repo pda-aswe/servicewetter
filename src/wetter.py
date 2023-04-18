@@ -2,6 +2,7 @@ import requests
 from datetime import datetime
 import time
 import os
+import json
 
 class OpenWeatherMapAPI:
     BASE_URL = "https://api.openweathermap.org/data/2.5/"
@@ -74,7 +75,7 @@ class OpenWeatherMapAPI:
                 "description": data["weather"][0]["description"]
             }
             print(weather)
-            return str(weather)
+            return json.dumps(weather)
         else:
             return None
     
