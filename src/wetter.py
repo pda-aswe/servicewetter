@@ -63,7 +63,7 @@ class OpenWeatherMapAPI:
     #         return None
     
     def get_current_weather_with_gps(self, latitude, longitude):
-        url = f"{self.BASE_URL}weather?lat={latitude}&lon={longitude}&appid={self.api_key}&units=metric"
+        url = f"{self.BASE_URL}weather?lat={latitude}&lon={longitude}&appid={self.api_key}&units=metric&lang=de"
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
@@ -81,7 +81,7 @@ class OpenWeatherMapAPI:
     
     def get_weather_by_date_with_gps(self, latitude, longitude, date_time):
         unix_timestamp = int(time.mktime(datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S").timetuple()))
-        url = f"{self.BASE_URL}forecast?lat={latitude}&lon={longitude}&appid={self.api_key}&units=metric"
+        url = f"{self.BASE_URL}forecast?lat={latitude}&lon={longitude}&appid={self.api_key}&units=metric&lang=de"
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
